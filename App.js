@@ -1,20 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import {createAppContainer, createAppNavigator, createSwitchNavigator} from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import SignupScreen from './src/screens/SignupScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import TrackDetailScreen from './src/screens/TrackDetailScreen';
+import AccountScreen from './src/screens/AccountScreen';
+import TrackListScreen from './src/screens/TrackListScreen';
+import TrackCreateScreen from './src/screens/TrackCreateScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const switchNavigator = createSwitchNavigator({
+  loginFlow: createStackNavigator({
+    SignupScreen: SignupScreen,
+    SigninScreen: SigninScreen
+  }),
+  mainFlow: createMaterialBottomTabNavigator({
+    trackListFlow: createStackNavigator({
+      TrackListScreen: TrackListScreen,
+      TrackDetailScreen: TrackDetailScreen
+    }),
+    TrackCreateScreen: TrackCreateScreen,
+    AccountScreen: AccountScreen
+  })
+})
+
+const App = createAppContainer(switchNavigator)
+export default () => {
+  return <SafeAreaProvider>
+    <App />
+  </SafeAreaProvider>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
