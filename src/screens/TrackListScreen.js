@@ -5,7 +5,7 @@ import { Button, Text } from "react-native-elements";
 const TrackListScreen = ({navigation}) => {
     return (
         <View>
-            <Text h3>Sign up for tracker</Text>
+            <Text h3>TrackListScreen</Text>
         </View>
     )
 }
