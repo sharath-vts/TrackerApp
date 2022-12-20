@@ -12,8 +12,10 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigatioRef';
+import InitialScreen from './src/screens/InitialScreen';
 
 const switchNavigator = createSwitchNavigator({
+  InitialScreen: InitialScreen,
   loginFlow: createStackNavigator({
     SignupScreen: SignupScreen,
     SigninScreen: SigninScreen
